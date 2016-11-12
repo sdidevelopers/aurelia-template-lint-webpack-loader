@@ -1,8 +1,8 @@
-# aurelia template lint loader for webpack
+# Aurelia Template Lint Loader for Webpack 2
 
 ## Usage
 
-Apply the aurelia template lint loader as pre/postLoader in your webpack configuration:
+Apply the aurelia-template-lint-webpack-loader in your webpack configuration, enforcing the rule as `'pre'`:
 
 ``` javascript
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
         path.resolve('src')
       ],
       use: [{
-        loader: 'aurelia-template-lint-loader',
+        loader: 'aurelia-template-lint-webpack-loader',
         enforce: 'pre',
         options: {
           // you can pass an configuration class
@@ -46,7 +46,7 @@ module.exports = {
 
 ```
 ## More options and configuration
-Behind the sence, the loader is using the following linter https://github.com/MeirionHughes/aurelia-template-lint
+Behind the scenes, the loader is using the following linter https://github.com/MeirionHughes/aurelia-template-lint
 
 ## Installation
 
@@ -55,6 +55,8 @@ npm install aurelia-template-lint-loader --save-dev
 ```
 
 ## License
+
+This is a Webpack 2 + TypeScript fork of https://github.com/w3tecch/aurelia-template-lint-loader.
 
 MIT (http://www.opensource.org/licenses/mit-license.php)
 
