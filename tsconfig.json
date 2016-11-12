@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "noImplicitAny": false,
+    "inlineSourceMap": false,
+    "strictNullChecks": true,
+    "lib": [
+      "dom", "es2017"
+    ]
+  },
+  "exclude": [
+    ".idea",
+    ".vscode",
+    "node_modules",
+    "temp",
+    "test-fixtures"
+  ]
+}

@@ -1,3 +1,7 @@
 node_modules
-npm-debug.log
-*.tgz
+.idea
+dist/
+*.log
+test-fixtures/webpack-dist
+/index.js
+/yarn.lock
