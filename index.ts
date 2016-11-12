@@ -6,31 +6,35 @@ import {AureliaLinter, Config} from 'aurelia-template-lint'
 import {AureliaTemplateLintLoaderOptions} from './typings'
 
 async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
-  const config = Object.assign({}, loaderUtils.parseQuery(this.query)) as AureliaTemplateLintLoaderOptions
+  const options = Object.assign({}, loaderUtils.parseQuery(this.query)) as AureliaTemplateLintLoaderOptions
 
   // Get bail option
   const bailEnabled = loaderInstance.options.bail === true
 
-  if (!config.configuration) {
-    config.configuration = new Config()
+  if (!options.configuration) {
+    options.configuration = new Config()
   }
 
   // Configure linter
-  if (config.typeChecking) {
-    config.configuration.useRuleAureliaBindingAccess = true
-    config.configuration.reflectionOpts = {
-      sourceFileGlob: `${config.fileGlob}/**/*.ts`,
-      typingsFileGlob: `${config.fileGlob}/**/*.d.ts`
+  if (options.typeChecking) {
+    if (!options.configuration.useRuleAureliaBindingAccess) {
+      options.configuration.useRuleAureliaBindingAccess = true
+    }
+    if (options.fileGlob) {
+      options.configuration.reflectionOpts = Object.assign({
+        sourceFileGlob: `${options.fileGlob}/**/*.ts`,
+        typingsFileGlob: `${options.fileGlob}/**/*.d.ts`
+      }, options.configuration.reflectionOpts || {})
     }
   }
 
-  const linter = new AureliaLinter(config.configuration)
+  const linter = new AureliaLinter(options.configuration)
 
   // Lint current file
   const results = await linter.lint(input, loaderInstance.resourcePath)
 
   // Choose the right emitter
-  const emitter = config.emitErrors ? loaderInstance.emitError : loaderInstance.emitWarning
+  const emitter = options.emitErrors ? loaderInstance.emitError : loaderInstance.emitWarning
 
   let errorText = '';
 
@@ -45,7 +49,7 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
     emitter(errorText)
 
     // Fail on hint
-    if (config.failOnHint) {
+    if (options.failOnHint) {
       const messages = bailEnabled ? '\n\n' + loaderInstance.resourcePath + '\n' + errorText : ''
       throw new Error('Compilation failed due to aurelia template error errors.' + messages)
     }
@@ -62,7 +66,7 @@ function loader(this: Webpack.Core.LoaderContext, input: string, sourceMap?: Sou
     return input
   } else {
     // async
-    lint(input, this).then(() => callback(), callback)
+    lint(input, this).then(() => callback(undefined, input, sourceMap), callback)
   }
 }
 
