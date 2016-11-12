@@ -1,14 +1,18 @@
 {
   "name": "aurelia-template-lint-webpack-loader",
-  "version": "1.0.0",
   "description": "Runs the aurelia-template-linter as a Webpack loader",
   "main": "index.js",
+  "scripts": {
+    "test": "echo DUMMY",
+    "build": "rm -f index.js && tsc -p . -t es5 --listFiles",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
   "repository": {
-    "url": "https://github.com/niieani/aurelia-template-lint-loader",
+    "url": "https://github.com/niieani/aurelia-template-lint-webpack-loader",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/niieani/aurelia-template-lint-loader/issues"
+    "url": "https://github.com/niieani/aurelia-template-lint-webpack-loader/issues"
   },
   "keywords": [
     "aurelia",
@@ -31,7 +35,8 @@
   "devDependencies": {
     "@types/source-map": "^0.1.29",
     "typescript": "^2.1",
-    "webpack-dependency-suite": "^1.0.5"
+    "webpack-dependency-suite": "^1.0.5",
+    "semantic-release": "^4.3.5"
   },
   "dependencies": {
     "aurelia-template-lint": "^0.9.15 || ^1.0.0"
