@@ -6,7 +6,7 @@ import {AureliaLinter, Config} from 'aurelia-template-lint'
 import {AureliaTemplateLintLoaderOptions} from './typings'
 
 async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
-  const options = Object.assign({}, loaderUtils.parseQuery(this.query)) as AureliaTemplateLintLoaderOptions
+  const options = Object.assign({}, loaderUtils.parseQuery(loaderInstance.query)) as AureliaTemplateLintLoaderOptions
 
   // Get bail option
   const bailEnabled = loaderInstance.options.bail === true
