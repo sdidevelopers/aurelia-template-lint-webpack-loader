@@ -1,5 +1,5 @@
 {
-  "name": "aurelia-template-lint-loader",
+  "name": "aurelia-template-lint-webpack-loader",
   "version": "1.0.0",
   "description": "Runs the aurelia-template-linter as a Webpack loader",
   "main": "index.js",
