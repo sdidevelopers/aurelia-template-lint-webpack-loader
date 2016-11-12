@@ -3,7 +3,7 @@ import {Config} from 'aurelia-template-lint'
 export interface AureliaTemplateLintLoaderOptions {
   typeChecking?: boolean
   configuration?: Config
-  fileGlob?: string
+  reflectionOpts?: typeof Config.prototype.reflectionOpts
   emitErrors?: boolean
   failOnHint?: boolean
 }

@@ -33,11 +33,14 @@ module.exports = {
           // aurelia does not type check by default
           // if you want to do type checking set
           // typeChecking to true and provide
-          // the right fileGlob
+          // the right fileGlobs
           // reference https://github.com/MeirionHughes/aurelia-template-lint#static-type-checking
           // these settings can also be passed with configuration above
           typeChecking: true,
-          fileGlob: 'path/to/app-source'
+          reflectionOpts: {
+            sourceFileGlob: './**/*.ts',
+            typingsFileGlob: './**/*.d.ts',
+          }
         }
       }]
     }]

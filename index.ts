@@ -17,14 +17,11 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
 
   // Configure linter
   if (options.typeChecking) {
-    if (!options.configuration.useRuleAureliaBindingAccess) {
+    if (options.configuration.useRuleAureliaBindingAccess) {
       options.configuration.useRuleAureliaBindingAccess = true
     }
-    if (options.fileGlob) {
-      options.configuration.reflectionOpts = Object.assign({
-        sourceFileGlob: `${options.fileGlob}/**/*.ts`,
-        typingsFileGlob: `${options.fileGlob}/**/*.d.ts`
-      }, options.configuration.reflectionOpts || {})
+    if (options.reflectionOpts) {
+      options.configuration.reflectionOpts = options.reflectionOpts
     }
   }
 

@@ -1,6 +1,7 @@
 {
   "name": "aurelia-template-lint-webpack-loader",
   "description": "Runs the aurelia-template-linter as a Webpack loader",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo DUMMY",
