@@ -4,6 +4,7 @@ import * as SourceMap from 'source-map'
 import * as loaderUtils from 'loader-utils'
 import {AureliaLinter, Config} from 'aurelia-template-lint'
 import {AureliaTemplateLintLoaderOptions} from './typings'
+import * as path from 'path'
 
 async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
   const options = Object.assign({}, loaderUtils.parseQuery(loaderInstance.query)) as AureliaTemplateLintLoaderOptions
@@ -17,7 +18,7 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
 
   // Configure linter
   if (options.typeChecking) {
-    if (options.configuration.useRuleAureliaBindingAccess) {
+    if (!options.configuration.useRuleAureliaBindingAccess) {
       options.configuration.useRuleAureliaBindingAccess = true
     }
     if (options.reflectionOpts) {
@@ -25,10 +26,12 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
     }
   }
 
+  options.rootDir = options.rootDir || loaderInstance.options.context
+
   const linter = new AureliaLinter(options.configuration)
 
   // Lint current file
-  const results = await linter.lint(input, loaderInstance.resourcePath)
+  const results = await linter.lint(input, options.rootDir ? `./${path.relative(options.rootDir, loaderInstance.resourcePath)}` : loaderInstance.resourcePath)
 
   // Choose the right emitter
   const emitter = options.emitErrors ? loaderInstance.emitError : loaderInstance.emitWarning
@@ -59,11 +62,11 @@ function loader(this: Webpack.Core.LoaderContext, input: string, sourceMap?: Sou
 
   if (!callback) {
     // sync
-    lint(input, this)
+    lint(input, this).catch(error => console.error(error.message))
     return input
   } else {
     // async
-    lint(input, this).then(() => callback(undefined, input, sourceMap), callback)
+    lint(input, this).then(() => callback(undefined, input, sourceMap)).catch(callback)
   }
 }
 

@@ -6,4 +6,5 @@ export interface AureliaTemplateLintLoaderOptions {
   reflectionOpts?: typeof Config.prototype.reflectionOpts
   emitErrors?: boolean
   failOnHint?: boolean
+  rootDir?: string
 }
