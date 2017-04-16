@@ -9,13 +9,13 @@ module.exports = {
   module: {
     rules: [{
       test: /\.html$/i,
+      enforce: 'pre',
       include: [
         // where your aurelia templates are contained:
         path.resolve('src')
       ],
       use: [{
         loader: 'aurelia-template-lint-webpack-loader',
-        enforce: 'pre',
         options: {
           // you can pass an configuration class
           // config reference https://github.com/MeirionHughes/aurelia-template-lint#config
