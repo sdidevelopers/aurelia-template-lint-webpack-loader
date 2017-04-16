@@ -7,7 +7,7 @@ import {AureliaTemplateLintLoaderOptions} from './typings'
 import * as path from 'path'
 
 async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
-  const options = Object.assign({}, loaderUtils.getOptions(loaderInstance)) as AureliaTemplateLintLoaderOptions
+  const options = Object.assign({}, (loaderUtils as any).getOptions(loaderInstance)) as AureliaTemplateLintLoaderOptions
 
   // Get bail option
   const bailEnabled = loaderInstance.options.bail === true
