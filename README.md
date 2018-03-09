@@ -25,11 +25,6 @@ module.exports = {
           // set emitErrors to true to display them as errors
           emitErrors: false,
 
-          // aurelia does not interrupt the compilation by default
-          // if you want any file with aurelia errors to fail
-          // set failOnHint to true
-          failOnHint: true,
-
           // aurelia does not type check by default
           // if you want to do type checking set
           // typeChecking to true and provide

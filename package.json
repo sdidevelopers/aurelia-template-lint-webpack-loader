@@ -34,10 +34,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/source-map": "^0.1.29",
+    "@types/source-map": "^0.5.7",
     "typescript": "^2.1",
-    "webpack-dependency-suite": "^1.0.5",
-    "semantic-release": "^4.3.5"
+    "webpack-dependency-suite": "^2.4.5",
+    "semantic-release": "^15.0.2"
   },
   "dependencies": {
     "aurelia-template-lint": "^0.9.15 || ^1.0.0"
