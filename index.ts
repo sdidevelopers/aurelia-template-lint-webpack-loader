@@ -61,4 +61,5 @@ function loader(this: Webpack.Core.LoaderContext, input: string, sourceMap?: Sou
   }
 }
 
+
 module.exports = loader
