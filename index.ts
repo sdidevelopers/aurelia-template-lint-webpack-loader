@@ -9,9 +9,6 @@ import * as path from 'path'
 async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
   const options = Object.assign({}, (loaderUtils as any).getOptions(loaderInstance)) as AureliaTemplateLintLoaderOptions
 
-  // Get bail option
-  const bailEnabled = loaderInstance.options.bail === true
-
   if (!options.configuration) {
     options.configuration = new Config()
   }
@@ -26,7 +23,7 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
     }
   }
 
-  options.rootDir = options.rootDir || loaderInstance.options.context
+  options.rootDir = options.rootDir || (loaderInstance as any).rootContext
 
   const linter = new AureliaLinter(options.configuration)
 
@@ -47,12 +44,6 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
   if (results && results.length > 0) {
     // Emit error message
     emitter(errorText)
-
-    // Fail on hint
-    if (options.failOnHint) {
-      const messages = bailEnabled ? '\n\n' + loaderInstance.resourcePath + '\n' + errorText : ''
-      throw new Error('Compilation failed due to aurelia template error errors.' + messages)
-    }
   }
 }
 
