@@ -23,7 +23,7 @@ async function lint(input: string, loaderInstance: Webpack.Core.LoaderContext) {
     }
   }
 
-  options.rootDir = options.rootDir || loaderInstance.rootContext
+  options.rootDir = options.rootDir || (loaderInstance as any).rootContext
 
   const linter = new AureliaLinter(options.configuration)
 
