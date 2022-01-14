@@ -2,7 +2,7 @@
 /// <reference path="./node_modules/webpack-dependency-suite/custom_typings/any.d.ts" />
 import * as SourceMap from 'source-map'
 import * as loaderUtils from 'loader-utils'
-import {AureliaLinter, Config} from 'aurelia-template-lint'
+import {AureliaLinter, Config} from 'aurelia-template-lint-sdi'
 import {AureliaTemplateLintLoaderOptions} from './typings'
 import * as path from 'path'
 

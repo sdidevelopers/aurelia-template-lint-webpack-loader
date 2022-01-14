@@ -1,11 +1,12 @@
 {
-  "name": "aurelia-template-lint-webpack-loader",
+  "name": "aurelia-template-lint-webpack-loader-sdi",
   "description": "Runs the aurelia-template-linter as a Webpack loader",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "main": "index.js",
   "scripts": {
     "test": "echo DUMMY",
     "build": "rm -f index.js && tsc -p . -t es5 --listFiles",
+    "clean": "rm -rf node_modules/ rm -rf package-lock.json",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
@@ -21,7 +22,7 @@
     "loader",
     "linting"
   ],
-  "author": "David Weber",
+  "author": "Lukas Weldon",
   "contributors": [
     {
       "name": "David Weber"
@@ -35,11 +36,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/source-map": "^0.5.7",
-    "typescript": "^2.1",
+    "typescript": "^3.9.4",
     "webpack-dependency-suite": "^2.4.5",
     "semantic-release": "^15.0.2"
   },
   "dependencies": {
-    "aurelia-template-lint": "^0.9.15 || ^1.0.0"
+    "aurelia-template-lint-sdi": "^0.10.1"
   }
 }

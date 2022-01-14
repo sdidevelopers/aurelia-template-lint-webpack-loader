@@ -1,4 +1,4 @@
-import {Config} from 'aurelia-template-lint'
+import {Config} from 'aurelia-template-lint-sdi'
 
 export interface AureliaTemplateLintLoaderOptions {
   typeChecking?: boolean
